@@ -3,6 +3,7 @@ import "dotenv/config";
 import express, { urlencoded } from "express";
 import connectToDatabase from "./database/mongodb.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
+import archjetMiddleware from "./middlewares/archjet.middleware.js";
 
 import authRouter from "./routes/auth.routes.js";
 import subscriptionRouter from "./routes/subscription.routes.js";
@@ -20,6 +21,7 @@ app.use(urlencoded({ extended: false }));
 // parse cookie data
 app.use(cookieParser());
 
+app.use(archjetMiddleware);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/subscriptions", subscriptionRouter);
 app.use("/api/v1/users", userRouter);
