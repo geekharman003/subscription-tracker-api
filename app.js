@@ -22,17 +22,17 @@ app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(archjetMiddleware);
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/subscriptions", subscriptionRouter);
-app.use("/api/v1/users", userRouter);
-
-
-// global error middleware
-app.use(errorMiddleware);
 
 app.get("/", (req, res) => {
   res.send("home page");
 });
+
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/subscriptions", subscriptionRouter);
+app.use("/api/v1/users", userRouter);
+
+// global error middleware
+app.use(errorMiddleware);
 
 app.listen(process.env.PORT || 3000, async () => {
   console.log(`server is running on port ${process.env.PORT}`);

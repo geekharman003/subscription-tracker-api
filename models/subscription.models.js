@@ -14,7 +14,7 @@ const subscriptionSchema = new mongoose.Schema(
       type: Number,
       required: [true, "subscription price is required"],
       min: [5, "subscription price must be >= 5"],
-      max: [10, "subsciption price must be <= 10"],
+      max: [100, "subsciption price must be <= 10"],
     },
     currency: {
       type: String,
@@ -46,6 +46,7 @@ const subscriptionSchema = new mongoose.Schema(
       validate: {
         validator: (date) => date <= new Date(),
         message: "start date must be in the past",
+        required:[true,"startDate is required"]
       },
     },
     renewDate: {
@@ -87,7 +88,7 @@ subscriptionSchema.pre("save", function (next) {
     this.status = "Expired";
   }
 
-  next();
+  next;
 });
 
 // creating the model(table)

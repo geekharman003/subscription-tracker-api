@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 if (!process.env.DB_URI) {
   throw new Error("please define DB_URI as a environment variable");
 }
